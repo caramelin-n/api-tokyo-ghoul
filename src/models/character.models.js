@@ -10,6 +10,8 @@ const apidatos = sequelize.define("Character", {
     quinque: { type: DataTypes.STRING },
     image: { type: DataTypes.STRING },
     description: { type: DataTypes.STRING },
+}, {
+    timestamps: false,
 });
 
 export default apidatos;
