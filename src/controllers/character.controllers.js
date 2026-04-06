@@ -31,7 +31,7 @@ const isNameUnique = async (name) => {
     return character === null;
 };
 
-export const getallcharacters = async (req, res) => {
+export const getAllCharacters = async (req, res) => {
     try {
         const allCharacters = await apidatos.findAll();
         res.json(allCharacters);
@@ -40,7 +40,7 @@ export const getallcharacters = async (req, res) => {
     }
 };
 
-export const getcharacterbyid = async (req, res) => {
+export const getCharacterById = async (req, res) => {
     try {
         const character = await apidatos.findByPk(req.params.id);
         if (!character) {
@@ -52,7 +52,7 @@ export const getcharacterbyid = async (req, res) => {
     }
 };
 
-export const updatecharacter = async (req, res) => {
+export const updateCharacter = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, is_ghoul, gender, age, kagune, quinque, image, description } = req.body;
@@ -69,9 +69,6 @@ export const updatecharacter = async (req, res) => {
         if (description !== undefined && typeof description !== 'string') {
             return res.status(400).json({ error: "La descripción debe ser una oración." });
         }
-            if (name !== undefined && !(await isNameUnique(name, id))) {
-            return res.status(400).json({ error: "El nombre ya existe en la base de datos." });
-        }
 
         await apidatos.update(req.body, { where: { id } });
         res.json({ message: "Personaje actualizado con éxito." });
@@ -80,7 +77,7 @@ export const updatecharacter = async (req, res) => {
     }
 };
 
-export const deletecharacter = async (req, res) => {
+export const deleteCharacter = async (req, res) => {
     try {
         const { id } = req.params;
 

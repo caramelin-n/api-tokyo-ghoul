@@ -26,7 +26,7 @@ export const createCharacterValidation = [
         .isURL().withMessage("La imagen debe ser una URL válida.")
 ];
 
-export const getCharacterValidation = [
+export const updateCharacterValidation = [
     param("id")
     .exists()
     .isInt({ min: 1 })
@@ -62,20 +62,6 @@ export const getCharacterValidation = [
         .isURL().withMessage("La imagen debe ser una URL válida.")
 ];
 
-export const updateCharacterValidation = [
-    param("id")
-    .exists()
-    .isInt({ min: 1 })
-    .withMessage("El ID debe ser un número mayor o igual a 1")
-    .custom(async (req, res) => {
-        const { id } = req.params;
-        const character = apidatos.findByPk(id);
-        if(!character){
-            throw new Error("El personaje no existe en la base de datos.")
-        }
-    })
-];
-
 
 export const deleteCharacterValidation = [
     param("id")
@@ -90,3 +76,17 @@ export const deleteCharacterValidation = [
         }
     })
 ];
+
+export const findByIdCharacterValidation = [
+    param("id")
+    .exists()
+    .isInt({ min: 1 })
+    .withMessage("El ID debe ser un número mayor o igual a 1")
+    .custom(async (req, res) => {
+        const { id } = req.params;
+        const character = apidatos.findByPk(id);
+        if(!character){
+            throw new Error("El personaje no existe en la base de datos.")
+        }
+    })
+]
