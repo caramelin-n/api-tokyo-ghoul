@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import CharacterCards from "./components/characterCards";
+import Loading from "./components/loading.jsx";
+import SearchBar from "./components/searchBar.jsx";
+import Navbar from "./components/navbar.jsx";
+
 
 function App(){
   const [ characters, setCharacters ] = useState([]);
-  const [Loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getCharacters = async () => {
     try {
@@ -20,14 +25,25 @@ function App(){
     getCharacters()
   }, []);
 
+  const filteredCharacters = Array.isArray(characters) ? characters.filter((char) => {
+    const nameMatch = char.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const descMatch = char.description?.toLowerCase().includes(searchTerm.toLowerCase());
+    return nameMatch || descMatch;
+  }) : [];
   return (
     <div className="App">
-      <h1>Tokyo Ghoul Database</h1>
-      {Loading ? <p>Cargando ghouls...</p> : (
+      <Navbar />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      {isLoading ? 
+      <Loading /> : (
         <div className="characters-grid">
-          {characters.map(char => (
-            <CharacterCards key={char.id} character={char} />
-          ))}
+          {filteredCharacters.length > 0 ? (
+            filteredCharacters.map(char => (
+              <CharacterCards key={char.id} character={char} />
+            ))
+          ) : (
+            <p>No ghouls found in Anteiku.</p>
+          )}
         </div>
       )}
     </div>

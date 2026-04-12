@@ -13,6 +13,11 @@ return (
 
         {/* Card content */}
         <div className="card-content">
+          {character.image && (
+            <div className="character-image">
+              <img src={character.image} alt={character.name} loading="lazy" />
+            </div>
+          )}
           <div className="card-header">
             <h2 className="character-name">{character.name}</h2>
             <div className="ghoul-badge">

@@ -1,4 +1,4 @@
-import { body, param } from 'express-validator';
+ import { body, param } from 'express-validator';
 import apidatos from '../models/character.models.js';
 
 export const createCharacterValidation = [

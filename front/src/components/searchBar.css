@@ -1,0 +1,32 @@
+input{
+    border: dashed 2px #ff0055;
+    color: white;
+    background-color: black;
+    width: 30%;
+    height: 30%;
+    padding: 8px 12px;
+    margin: 20px auto;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+  border: 2px solid transparent;
+  background-image: linear-gradient(#000, #000), 
+                    linear-gradient(var(--angle), #ff00c1, #00fff2, #7d00ff, #ff00c1);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: rotate-gradient 3s linear infinite;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-gradient {
+  to {
+    --angle: 360deg;
+  }
+}
