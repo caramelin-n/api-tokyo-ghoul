@@ -242,3 +242,11 @@ lsof -ti:3000 | xargs kill -9
 - Verificar que backend esté corriendo en puerto 3000
 - Revisar CORS en configuración de Express
 - Abrir consola del navegador para ver errores específicos
+
+### Capturas de pantalla
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2c08f8db-2983-43fb-8cf8-31421629ab32" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1b21d7dc-9073-4d88-9938-0e21e26a8b5d" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/72993b6c-6d23-422c-9c4c-9827fafd4f8d" />
+
+
+
