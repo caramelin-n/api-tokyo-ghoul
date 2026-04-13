@@ -3,9 +3,6 @@ import apidatos from "../models/character.models.js";
 export const createCharacter = async (req, res) => {
     try {
         const { name, is_ghoul, gender, age, status, kagune, quinque, image, description } = req.body;
-        if (!name || !is_ghoul === undefined || !gender || !age) {
-            return res.status(400).json({ error: "Faltan datos obligatorios. Asegúrate de incluir nombre, si es ghoul, género y edad." });
-        }
         if (!Number.isInteger(age)) {
             return res.status(400).json({ error: "La edad ingresada no es válida, debe ser un entero." });
         }

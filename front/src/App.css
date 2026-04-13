@@ -13,6 +13,44 @@ body {
   padding-top: 0;
   margin-top: 0;
 }      
+
+.header-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 20px;
+}
+
+.btn-open-modal {
+  padding: 14px 32px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 2px solid;
+  border-image: linear-gradient(90deg, #ff3366, #0099ff, #ff00dd) 1;
+  background: rgba(40, 55, 85, 0.95);
+  color: #e0e6ff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Courier New', monospace;
+  position: relative;
+  overflow: visible;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.4), 0 0 15px rgba(0, 153, 255, 0.2);
+}
+
+.btn-open-modal:hover {
+  color: #fff;
+  background: rgba(50, 70, 100, 1);
+  box-shadow: 
+    0 0 25px rgba(255, 51, 102, 0.8),
+    0 0 40px rgba(0, 153, 255, 0.6),
+    inset 0 0 20px rgba(255, 51, 102, 0.1);
+  transform: translateY(-2px);
+}
+
 .characters-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

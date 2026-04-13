@@ -1,5 +1,5 @@
 import loadingicon from "../assets/loading.png";
-import './loading.css';
+import './css/loading.css';
 const Loading = () => {
     return (
         <div className="loading-containter">

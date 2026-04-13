@@ -1,8 +1,8 @@
-import './characterCards.css';
+import './css/characterCards.css';
 
-export default function CharacterCards({ character }) {
+export default function CharacterCards({ character, onClick }) {
 return (
-    <div className="card-container">
+    <div className="card-container" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div className="card">
         {/* Geometric background elements */}
         <div className="geometric-bg">

@@ -1,0 +1,398 @@
+/* Character Detail Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.detail-modal {
+  position: relative;
+  background: linear-gradient(180deg, #0f1219 0%, #0a0e14 100%);
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #ff0055, #0066ff, #ff00d4) 1;
+  padding: 30px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 
+    0 0 30px rgba(255, 0, 85, 0.3),
+    0 0 60px rgba(0, 102, 255, 0.2);
+  animation: slideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 8px;
+}
+
+.close-x {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 2px solid #ff0055;
+  color: #ff0055;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-x:hover {
+  background: #ff0055;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
+}
+
+.modal-body-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Image Side */
+.modal-image-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #ff0055, #0066ff) 1;
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 85, 0.3),
+    0 0 40px rgba(0, 102, 255, 0.2);
+}
+
+.neon-text-pink {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #e0e6ff;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff0055, #ff0099);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin: 0;
+}
+
+.specie-tag {
+  padding: 8px 20px;
+  background: rgba(40, 55, 85, 0.95);
+  border: 2px solid;
+  border-image: linear-gradient(90deg, #ff3366, #ff00dd) 1;
+  color: #e0e6ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  text-align: center;
+  margin: 0;
+}
+
+/* Info Side */
+.modal-info-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #e0e6ff;
+  font-family: 'Courier New', monospace;
+}
+
+.modal-info-side p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #a8aecc;
+  margin: 0;
+}
+
+.modal-info-side strong {
+  color: #ff0055;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* Dividers */
+.modal-info-side p:first-child::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff0055 25%, #0066ff 50%, #ff0055 75%, transparent);
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 0, 85, 0.2);
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Courier New', monospace;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  background: rgba(40, 55, 85, 0.95);
+}
+
+.btn-edit {
+  color: #e0e6ff;
+  border-image: linear-gradient(90deg, #0099ff, #00ffff) 1;
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.3);
+}
+
+.btn-edit:hover {
+  background: rgba(50, 70, 100, 1);
+  color: #00ffff;
+  box-shadow: 
+    0 0 25px rgba(0, 153, 255, 0.6),
+    0 0 15px rgba(0, 153, 255, 0.3),
+    inset 0 0 20px rgba(0, 153, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-delete {
+  color: #e0e6ff;
+  border-image: linear-gradient(90deg, #ff3366, #ff00dd) 1;
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+}
+
+.btn-delete:hover {
+  background: rgba(50, 70, 100, 1);
+  color: #ff00dd;
+  box-shadow: 
+    0 0 25px rgba(255, 51, 102, 0.6),
+    0 0 15px rgba(255, 51, 102, 0.3),
+    inset 0 0 20px rgba(255, 51, 102, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Edit Form Styles */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-input-group label {
+  font-weight: 700;
+  color: #ff0055;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.form-input-group input,
+.form-input-group select,
+.form-input-group textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  color: #e0e6ff;
+  padding: 10px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.form-input-group input:focus,
+.form-input-group select:focus,
+.form-input-group textarea:focus {
+  outline: none;
+  border-color: #ff0055;
+  background: rgba(255, 0, 85, 0.1);
+  box-shadow: 0 0 12px rgba(255, 0, 85, 0.3);
+}
+
+.form-input-group select option {
+  background: #000000;
+  color: #ffffff;
+}
+
+.form-input-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-input-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e0e6ff;
+  text-transform: uppercase;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.form-input-group.checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #ff0055;
+}
+
+/* Edit Action Buttons */
+.btn-cancel-edit {
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Courier New', monospace;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  background: rgba(40, 55, 85, 0.95);
+  color: #e0e6ff;
+  border-image: linear-gradient(90deg, #0099ff, #00ffff) 1;
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.3);
+}
+
+.btn-cancel-edit:hover {
+  background: rgba(50, 70, 100, 1);
+  color: #00ffff;
+  box-shadow: 
+    0 0 25px rgba(0, 153, 255, 0.6),
+    0 0 15px rgba(0, 153, 255, 0.3),
+    inset 0 0 20px rgba(0, 153, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-save-edit {
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Courier New', monospace;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  background: rgba(40, 55, 85, 0.95);
+  color: #e0e6ff;
+  border-image: linear-gradient(90deg, #ff3366, #ff00dd) 1;
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+}
+
+.btn-save-edit:hover {
+  background: rgba(50, 70, 100, 1);
+  color: #ff00dd;
+  box-shadow: 
+    0 0 25px rgba(255, 51, 102, 0.6),
+    0 0 15px rgba(255, 51, 102, 0.3),
+    inset 0 0 20px rgba(255, 51, 102, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.95) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detail-modal {
+    padding: 20px;
+  }
+
+  .modal-body-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .detail-img {
+    height: 250px;
+  }
+
+  .neon-text-pink {
+    font-size: 20px;
+  }
+
+  .modal-info-side {
+    gap: 12px;
+  }
+
+  .modal-info-side p {
+    font-size: 13px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .edit-form {
+    gap: 12px;
+  }
+
+  .form-input-group input,
+  .form-input-group select,
+  .form-input-group textarea {
+    font-size: 12px;
+  }
+
+  .btn-cancel-edit,
+  .btn-save-edit {
+    padding: 10px 16px;
+    font-size: 11px;
+  }
+}
