@@ -3,6 +3,7 @@ import CharacterCards from "./components/characterCards";
 import CharacterModal from "./components/characterModal.jsx";
 import Loading from "./components/loading.jsx";
 import SearchBar from "./components/searchBar.jsx";
+import FilterButtons from "./components/filterButtons.jsx";
 import Navbar from "./components/navbar.jsx";
 import Form from "./components/form.jsx";
 import './App.css';
@@ -14,6 +15,7 @@ function App(){
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [typeFilter, setTypeFilter] = useState('all');
 
   const getCharacters = async () => {
     try {
@@ -22,7 +24,7 @@ function App(){
       setCharacters(data);
       setLoading(false);
     } catch (error) {
-      console.error("Error al conectar con Anteiku.");
+      console.error("Error al conectar con la base de datos");
       setLoading(false);
     } 
   }
@@ -33,7 +35,16 @@ function App(){
   const filteredCharacters = Array.isArray(characters) ? characters.filter((char) => {
     const nameMatch = char.name.toLowerCase().includes(searchTerm.toLowerCase());
     const descMatch = char.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    return nameMatch || descMatch;
+    const searchMatches = nameMatch || descMatch;
+
+    let typeMatches = true;
+    if (typeFilter === 'ghoul') {
+      typeMatches = char.is_ghoul === true;
+    } else if (typeFilter === 'human') {
+      typeMatches = char.is_ghoul === false;
+    }
+
+    return searchMatches && typeMatches;
   }) : [];
   return (
     <div className="App">
@@ -42,6 +53,7 @@ function App(){
       <Loading /> : (
         <>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <FilterButtons typeFilter={typeFilter} setTypeFilter={setTypeFilter} />
         <div className="header-actions">
           <button className="btn-open-modal" onClick={() => setShowModal(true)}>
             + NUEVO REGISTRO
@@ -50,10 +62,10 @@ function App(){
         {showModal && (
           <Form 
             onCharacterCreated={() => {
-              getCharacters(); // Recarga la lista
-              setShowModal(false); // Cierra el modal al terminar
+              getCharacters();
+              setShowModal(false);
             }} 
-            onClose={() => setShowModal(false)} // Función para cerrar sin guardar
+            onClose={() => setShowModal(false)}
           />
         )}
         <div className="characters-grid">
@@ -67,7 +79,7 @@ function App(){
             ))
             
           ) : (
-            <p>No ghouls found in Anteiku.</p>
+            <p>No characters found.</p>
           )}
         </div>
         

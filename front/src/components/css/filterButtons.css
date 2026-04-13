@@ -1,0 +1,123 @@
+/* Filter Buttons Container */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 12px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 0, 0, 0.8);
+  color: #e0e6ff;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  box-shadow: 0 0 10px rgba(0, 153, 255, 0.15);
+}
+
+/* Botón TODOS - Azul/Cyan (neutral) */
+.filter-btn {
+  border-image: linear-gradient(90deg, #0099ff, #00ffff) 1;
+}
+
+.filter-btn:hover {
+  background: rgba(0, 0, 0, 1);
+  color: #00ffff;
+  box-shadow: 
+    0 0 20px rgba(0, 153, 255, 0.4),
+    0 0 10px rgba(0, 153, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: rgba(0, 0, 0, 1);
+  color: #00ffff;
+  box-shadow: 
+    0 0 25px rgba(0, 153, 255, 0.6),
+    0 0 15px rgba(0, 153, 255, 0.3),
+    inset 0 0 15px rgba(0, 153, 255, 0.1);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+/* Botón GHOULS - Pink/Magenta */
+.filter-btn.ghoul {
+  border-image: linear-gradient(90deg, #ff3366, #ff00dd) 1;
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.15);
+}
+
+.filter-btn.ghoul:hover {
+  background: rgba(0, 0, 0, 1);
+  color: #ff00dd;
+  box-shadow: 
+    0 0 20px rgba(255, 51, 102, 0.4),
+    0 0 10px rgba(255, 51, 102, 0.2);
+}
+
+.filter-btn.ghoul.active {
+  background: rgba(0, 0, 0, 1);
+  color: #ff00dd;
+  box-shadow: 
+    0 0 25px rgba(255, 51, 102, 0.6),
+    0 0 15px rgba(255, 51, 102, 0.3),
+    inset 0 0 15px rgba(255, 51, 102, 0.1);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+/* Botón HUMANOS - Verde/Cyan (alternativo) */
+.filter-btn.human {
+  border-image: linear-gradient(90deg, #00dd88, #00ff99) 1;
+  box-shadow: 0 0 10px rgba(0, 221, 136, 0.15);
+}
+
+.filter-btn.human:hover {
+  background: rgba(0, 0, 0, 1);
+  color: #00ff99;
+  box-shadow: 
+    0 0 20px rgba(0, 221, 136, 0.4),
+    0 0 10px rgba(0, 221, 136, 0.2);
+}
+
+.filter-btn.human.active {
+  background: rgba(0, 0, 0, 1);
+  color: #00ff99;
+  box-shadow: 
+    0 0 25px rgba(0, 221, 136, 0.6),
+    0 0 15px rgba(0, 221, 136, 0.3),
+    inset 0 0 15px rgba(0, 221, 136, 0.1);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .filter-btn {
+    padding: 10px 18px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .filter-btn.active {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .filter-buttons {
+    gap: 10px;
+  }
+}

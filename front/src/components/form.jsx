@@ -18,7 +18,6 @@ const Form = ({ onCharacterCreated, onClose }) => {
     const { name, value, type, checked } = e.target;
     let finalValue = type === 'checkbox' ? checked : value;
     
-    // Convertir age a número
     if (name === 'age' && value !== '') {
       finalValue = parseInt(value, 10);
     }
@@ -38,7 +37,7 @@ const Form = ({ onCharacterCreated, onClose }) => {
     });
 
     if (response.ok) {
-      alert("¡Personaje creado! ✨");
+      alert("Personaje creado exitosamente");
       setFormData({
         name: '',
         age: '',

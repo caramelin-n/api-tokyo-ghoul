@@ -31,7 +31,7 @@ const CharacterModal = ({ character, onClose, onDelete, onEdit }) => {
       });
 
       if (response.ok) {
-        alert('Personaje actualizado exitosamente! ✨');
+        alert('Personaje actualizado exitosamente');
         onEdit();
         onClose();
       } else {
@@ -45,7 +45,7 @@ const CharacterModal = ({ character, onClose, onDelete, onEdit }) => {
   };
 
   const handleDelete = async () => {
-    if (window.confirm(`¿Seguro que quieres eliminar a ${character.name}? Esta acción no se puede deshacer.`)) {
+    if (window.confirm(`Delete ${character.name}? This action cannot be undone.`)) {
       try {
         const response = await fetch(`http://localhost:3000/api/characters/${character.id}`, { 
           method: 'DELETE' 
