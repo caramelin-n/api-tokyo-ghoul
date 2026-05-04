@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import CharacterCards from "./components/characterCards";
 import CharacterModal from "./components/characterModal.jsx";
 import Loading from "./components/loading.jsx";
@@ -37,20 +37,13 @@ function App(){
     getCharacters()
   }, [getCharacters]);
 
-  const filteredCharacters = Array.isArray(characters) ? characters.filter((char) => {
-    const nameMatch = char.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const descMatch = char.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    const searchMatches = nameMatch || descMatch;
-
-    let typeMatches = true;
-    if (typeFilter === 'ghoul') {
-      typeMatches = char.is_ghoul === true;
-    } else if (typeFilter === 'human') {
-      typeMatches = char.is_ghoul === false;
-    }
-
-    return searchMatches && typeMatches;
-  }) : [];
+  const filteredCharacters = useMemo(() => {
+    return Array.isArray(characters) ? characters.filter(char => {
+      const nameMatch =  char.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const descMatch = char.description?.toLowerCase().includes(searchTerm.toLowerCase());
+      return nameMatch || descMatch;
+    }) : [];
+  }, [characters, searchTerm]);
   return (
     <div className="App">
       <Navbar />
