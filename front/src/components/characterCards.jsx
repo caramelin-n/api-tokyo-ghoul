@@ -1,6 +1,8 @@
+import { memo } from 'react';
 import './css/characterCards.css';
 
-export default function CharacterCards({ character, onClick }) {
+const characterCards = memo(({ character, onClick }) => {
+    console.log("Renderizando card de", character.name);
 return (
     <div className="card-container" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div className="card">
@@ -49,4 +51,6 @@ return (
       </div>
     </div>
   );
-}
+});
+
+export default characterCards;

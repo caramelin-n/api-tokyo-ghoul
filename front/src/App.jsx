@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CharacterCards from "./components/characterCards";
 import CharacterModal from "./components/characterModal.jsx";
 import Loading from "./components/loading.jsx";
@@ -17,7 +17,11 @@ function App(){
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [typeFilter, setTypeFilter] = useState('all');
 
-  const getCharacters = async () => {
+  const handleSelectCharacter = useCallback((char) => {
+    setSelectedCharacter(char);
+  }, [])
+
+  const getCharacters = useCallback(async () => {
     try {
       const response = await fetch('http://localhost:3000/api/characters');
       const data = await response.json();
@@ -27,10 +31,11 @@ function App(){
       console.error("Error al conectar con la base de datos");
       setLoading(false);
     } 
-  }
+  }, []);
+
   useEffect(() => {
     getCharacters()
-  }, []);
+  }, [getCharacters]);
 
   const filteredCharacters = Array.isArray(characters) ? characters.filter((char) => {
     const nameMatch = char.name.toLowerCase().includes(searchTerm.toLowerCase());
